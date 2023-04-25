@@ -6,6 +6,13 @@
   ==============================================================================
 */
 
+/*
+ TODO:
+ click anywhere on the window, and play a note
+ if you click and drag it will change the pitch of the note
+ Should we play a sound?
+*/
+
 #pragma once
 
 #include <JuceHeader.h>
@@ -57,6 +64,7 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
+    bool shouldPlaySound = true;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PFMProject0AudioProcessor)
 };

@@ -150,11 +150,23 @@ void PFMProject0AudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
+    juce::Random random;
+   
+  
+    for( int i = 0; i < buffer.getNumSamples(); ++i )
     {
-        auto* channelData = buffer.getWritePointer (channel);
-
-        // ..do something to the data...
+        for( int channel = 0; channel < buffer.getNumChannels(); ++channel)
+        {
+            if( shouldPlaySound )
+            {
+                float r = random.nextFloat();
+                buffer.setSample(channel, i, r);
+            }
+            else
+            {
+                buffer.setSample(channel, i, 0);
+            }
+        }
     }
 }
 
